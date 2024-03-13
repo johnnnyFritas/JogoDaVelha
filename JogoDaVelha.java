@@ -1,4 +1,4 @@
-package jogos;
+package projetosJogos;
 import java.util.Scanner;
 public class JogoDaVelha {
 
@@ -19,11 +19,16 @@ public class JogoDaVelha {
 					if(jog.getJogador1() == null || jog.getJogador2() == null) {
 						jogadores(jog);
 						pulaLinha20();
-						menu();
+						defineTamanho(tabu);
+						pulaLinha20();
+						System.out.println("Digite as coordenadas:\n(Em x e em Y)");
+						pulaLinha3();
+						tabu.mostraTabuleiro();
+						pulaLinha3();
+						cont++;
 					}else {
 						defineTamanho(tabu);
 						pulaLinha3();
-						tabu.mostraTabuleiro();
 						cont++;
 					}
 					break;
@@ -69,9 +74,7 @@ public class JogoDaVelha {
 	}
 
 	public static void defineTamanho(Tabuleiro tabu) {
-		pulaLinha3();
 		System.out.println("\nDigite o tamanho\n");
-		pulaLinha3();
 		System.out.print("Eixo x: ");
 		tabu.setX();
 		System.out.println();

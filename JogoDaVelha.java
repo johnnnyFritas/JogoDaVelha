@@ -6,8 +6,6 @@ public class JogoDaVelha {
 		int opc = 0, cont = 0;
 		
 		Scanner scan = new Scanner(System.in);
-		Jogadores jog = new Jogadores();
-		Tabuleiro tabu = new Tabuleiro();
 		
 		//Menu
 		menu();
@@ -16,28 +14,13 @@ public class JogoDaVelha {
 			opc = scan.nextInt();
 			switch(opc) {
 				case 1:
-					if(jog.getJogador1() == null || jog.getJogador2() == null) {
-						jogadores(jog);
 						pulaLinha20();
-						defineTamanho(tabu);
-						pulaLinha20();
-						System.out.println("Digite as coordenadas:\n(Em x e em Y)");
+						tabuleiro();
 						pulaLinha3();
-						tabu.mostraTabuleiro();
 						pulaLinha3();
 						cont++;
-					}else {
-						defineTamanho(tabu);
-						pulaLinha3();
-						cont++;
-					}
 					break;
 				case 2:
-					jogadores(jog);
-					pulaLinha20();
-					menu();
-					break;
-				case 3:
 					cont++;
 					break;
 				default:
@@ -54,13 +37,6 @@ public class JogoDaVelha {
 		System.out.println("\n3 - Sair ;-; :(");
 	}
 	
-	public static void jogadores(Jogadores jog) {
-		System.out.print("\nDigite o nome do primeiro jogador: ");
-		jog.setJogador1();
-		System.out.print("\nDigite o nome do segundo jogador: ");
-		jog.setJogador2();
-	}
-	
 	public static void pulaLinha3() {
 		for(int i = 0; i < 3; i++) {
 			System.out.println();
@@ -72,13 +48,27 @@ public class JogoDaVelha {
 			System.out.println();
 		}
 	}
-
-	public static void defineTamanho(Tabuleiro tabu) {
-		System.out.println("\nDigite o tamanho\n");
-		System.out.print("Eixo x: ");
-		tabu.setX();
-		System.out.println();
-		System.out.print("Eixo y: ");
-		tabu.setY();
+	
+	public static void tabuleiro() {
+		int cont = 0;
+		
+		String tab[][] = new String[3][3];
+		
+		while(cont <=  9) {
+			System.out.println("Digite as coordenadas de onde deseja jogar: ");
+			
+			for(int i = 0; i < tab.length; i++) {
+				for(int j = 0; j < tab[i].length; j++) {
+					if(j != 0) {
+						System.out.print(" |");
+					}
+				}
+				if(i != (tab[i].length - 1)) {
+					System.out.print("\n-----");
+				}
+				System.out.println();
+			}
+			cont++;
+		}
 	}
 }

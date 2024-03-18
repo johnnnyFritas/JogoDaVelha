@@ -1,9 +1,11 @@
-package projetosJogos;
+package jogos;
 import java.util.Scanner;
 public class JogoDaVelha {
 
 	public static void main(String[] args) {
 		int opc = 0, cont = 0;
+		
+		int x, y;
 		
 		Scanner scan = new Scanner(System.in);
 		
@@ -15,9 +17,6 @@ public class JogoDaVelha {
 			switch(opc) {
 				case 1:
 						pulaLinha20();
-						tabuleiro();
-						pulaLinha3();
-						pulaLinha3();
 						cont++;
 					break;
 				case 2:
@@ -27,14 +26,39 @@ public class JogoDaVelha {
 					System.out.print("\nDigite uma opcao valida");
 			}
 		}
+		
+		String[][] tab = new String[3][3];
+		
+		for(int i = 0; i < 9; i++) {
+			pulaLinha3();
+			
+			if(i % 2 == 0) {
+				System.out.println("Vez do jogador 1:");
+				System.out.println("Digite as coordenadas para sua jogada:");
+				x = scan.nextInt();
+				y = scan.nextInt();
+				
+				tab[x][y] = "x";
+			
+				tabuleiro(tab, x, y);
+			}else {
+				System.out.println("Vez do jogador 2:");
+				System.out.println("Digite as coordenadas para sua jogada:");
+				x = scan.nextInt();
+				y = scan.nextInt();
+				
+				tab[x][y] = "y";
+			
+				tabuleiro(tab, x, y);
+			}
+		}
 		scan.close();
 	}
 	
 	public static void menu() {
 		System.out.println("\nSeja bem-vindo ao jogo da velha!");
 		System.out.println("\n1 - Jogar!");
-		System.out.println("\n2 - Definir os nomes dos jogadores");
-		System.out.println("\n3 - Sair ;-; :(");
+		System.out.println("\n2 - Sair ;-; :(");
 	}
 	
 	public static void pulaLinha3() {
@@ -49,26 +73,18 @@ public class JogoDaVelha {
 		}
 	}
 	
-	public static void tabuleiro() {
-		int cont = 0;
+	public static void tabuleiro(String[][] tab, int x, int y) {
 		
-		String tab[][] = new String[3][3];
-		
-		while(cont <=  9) {
-			System.out.println("Digite as coordenadas de onde deseja jogar: ");
-			
-			for(int i = 0; i < tab.length; i++) {
-				for(int j = 0; j < tab[i].length; j++) {
-					if(j != 0) {
-						System.out.print(" |");
-					}
+		for(int i = 0; i < tab.length; i++) {
+			for(int j = 0; j < tab[i].length; j++) {
+				if(j != 0) {
+					System.out.print(tab[x][y] + "|");
 				}
-				if(i != (tab[i].length - 1)) {
-					System.out.print("\n-----");
-				}
-				System.out.println();
 			}
-			cont++;
+			if(i != tab[i].length - 1) {
+				System.out.print("\n-----");
+			}
+			System.out.println();
 		}
 	}
 }
